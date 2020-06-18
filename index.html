@@ -82,8 +82,8 @@ padding:5px;
         camera = new THREE.PerspectiveCamera(60,window.innerWidth/window.innerHeight,1,5000);
         camera.rotation.y = 45/180*Math.PI;
         camera.position.x = 500;
-        camera.position.y = 100;
-        camera.position.z = 740;
+        camera.position.y = 10;
+        camera.position.z = 700;
 
         // controls = new THREE.OrbitControls(camera);
         // controls.addEventListener('change', renderer);
@@ -100,7 +100,7 @@ padding:5px;
         scene.add(light2);
 
         renderer = new THREE.WebGLRenderer({antialias:true});
-        renderer.setSize(1000,500);
+        renderer.setSize(1000,700);
         document.body.appendChild(renderer.domElement);
         loadScene();
         let loader = new THREE.GLTFLoader();
