@@ -5,61 +5,18 @@
     <link rel="stylesheet" type="text/css" href="styles.css" />
   </head>
   <link href="https://fonts.googleapis.com/css2?family=MuseoModerno:wght@300;700&display=swap" rel="stylesheet">
-  <style>
-    body{
-      text-align: center;
-      font-family: 'MuseoModerno', cursive;
-    }
-    .menu{
-      width:100%;
-      display: flex;
-justify-content: space-evenly;
-margin-bottom:30px;
-padding:5px;
-    }
-    section{
-      text-align: left;
-      border: 1px solid black;
-      padding:10px;
-      border-radius: 10px;
-    }
-    /* .menu > button{
-
-      font-weight: bold;
-      border-radius: 10px;
-      border:5px solid black;
-    } */
-    h1{
-      text-transform: uppercase;
-      font-weight: 700;
-    }
-    .menu > button {
-      width:150px;
-      height:50px;
-      font-size: 30px;
-  border-radius: .2em;
-  background-image: -webkit-repeating-linear-gradient(left, hsla(0,0%,100%,0) 0%, hsla(0,0%,100%,0)   6%, hsla(0,0%,100%, .1) 7.5%),
-    -webkit-repeating-linear-gradient(left, rgba(0, 0, 0, 0) 0%, hsla(0,0%,  0%,0)   4%, hsla(0,0%,  0%,.03) 4.5%),
-    -webkit-repeating-linear-gradient(left, rgba(255, 255, 255, 0) 0%, hsla(0,0%,100%,0) 1.2%, hsla(0,0%,100%,.15) 2.2%),
-    
-    linear-gradient(180deg, hsl(0,0%,78%)  0%, 
-    hsl(0,0%,90%) 47%, 
-    hsl(0,0%,78%) 53%,
-    hsl(0,0%,70%)100%);
-}
-    button:nth-child(1){
-      color: rgb(129, 97, 8);
-    }
-    button:nth-child(2){
-      color: rgb(8, 100, 28);
-    }
-    button:nth-child(3){
-      color:rgb(9, 113, 161);
-    }
-  </style>
+<link rel="stylesheet" href="style.css">
   <title>Car Configurator</title>
   <body>
     <h1>3D Car Configurator</h1>
+    <div class="slider">
+      <ul>
+        <li style="background:url(img/car1.png) "></li>
+        <li style="background:url(img/car2.png) 50%/cover no-repeat"></li>
+        <li style="background:url(img/car3.png) 50%/cover no-repeat"></li>
+        <li style="background:url(img/car4.png) 50%/cover no-repeat"></li>
+      </ul>
+    </div>
     <section>Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae facilis omnis maiores voluptate minima architecto quia corrupti laborum vitae, repudiandae quaerat repellat perferendis, nostrum voluptas, aspernatur ab excepturi magnam tempore sint numquam ipsam eveniet id. Et rerum a consectetur sapiente!</section>
     <h3>Change color</h3>
     <div class="menu">
@@ -69,88 +26,7 @@ padding:5px;
     </div>
     <script src="three.js"></script>
     <script src="GLTFLoader.js"></script>
-    <script>
-    let carColor = 0xff0000
-
-      let scene, camera, renderer;
-
-      function init() {
-
-        scene = new THREE.Scene();
-        scene.background = new THREE.Color(0xffffff);
-
-        camera = new THREE.PerspectiveCamera(60,window.innerWidth/window.innerHeight,1,5000);
-        camera.rotation.y = 45/180*Math.PI;
-        camera.position.x = 500;
-        camera.position.y = 10;
-        camera.position.z = 700;
-
-        // controls = new THREE.OrbitControls(camera);
-        // controls.addEventListener('change', renderer);
-
-        directionalLight = new THREE.DirectionalLight(0xffffff,100);
-        directionalLight.position.set(0,1,0);
-        directionalLight.castShadow = true;
-        scene.add(directionalLight);
-        light = new THREE.PointLight(0xc4c4c4,10);
-        light.position.set(0,300,500);
-        scene.add(light);
-        light2 = new THREE.PointLight(0xc4c4c4,10);
-        light2.position.set(500,100,0);
-        scene.add(light2);
-
-        renderer = new THREE.WebGLRenderer({antialias:true});
-        renderer.setSize(1000,700);
-        document.body.appendChild(renderer.domElement);
-        loadScene();
-        let loader = new THREE.GLTFLoader();
-        let newMaterial = new THREE.MeshStandardMaterial({color: carColor});
-
-        loader.load('scene.gltf', function(gltf){
-          car = gltf.scene.children[0];
-          car.traverse((o) => {
-          if (o.isMesh && o.name == 'Plane045_paint_0') {
-            console.log(o.name);
-            o.material = newMaterial;
-          }
-          });
-        });
-      }
-      function animate() {
-        renderer.render(scene,camera);
-        requestAnimationFrame(animate);
-      }
-      init();
-function loadScene() {let loader = new THREE.GLTFLoader();
-        let newMaterial = new THREE.MeshStandardMaterial({color: carColor});
-
-        loader.load('scene.gltf', function(gltf){
-          car = gltf.scene.children[0];
-          car.traverse((o) => {
-          if (o.isMesh && o.name == 'Plane045_paint_0') {
-            console.log(o.name);
-            o.material = newMaterial;
-          }
-          });
-          car.scale.set(0.5,0.5,0.5);
-          scene.add(gltf.scene);
-          animate();
-        });}
-let yellowButton = document.querySelector('[menu-buttonY]');
-let greenButton = document.querySelector('[menu-buttonG]');
-let blueButton = document.querySelector('[menu-buttonB]');
-yellowButton.addEventListener('click',() => {
-carColor = 0xffff00
-loadScene();
-});
-greenButton.addEventListener('click',() => {
-carColor = 0x008000
-loadScene();
-});
-blueButton.addEventListener('click',() => {
-carColor = 0x0000FF
-loadScene();
-});
-    </script>
+   <script src="threejsscene.js"></script>
+   <script src="slider.js"></script>
   </body>
 </html>
