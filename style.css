@@ -1,5 +1,6 @@
 body{
     text-align: center;
+    justify-items: center;
     font-family: 'MuseoModerno', cursive;
   }
   body, .slider, ul {
@@ -7,9 +8,12 @@ margin:0;padding:0;
 overflow-x: hidden;
 }
   .menu{
-    width:100%;
+    position: relative;
+top:100%;left:50%;
+transform: translate(-50%);
+    width:40%;
     display: flex;
-justify-content: space-evenly;
+    justify-content: space-around;
 padding:5px;
   }
   section{
@@ -17,10 +21,17 @@ padding:5px;
     border: 1px solid black;
     padding:10px;
     border-radius: 10px;
+    margin: 10px;
   }
   h1{
     text-transform: uppercase;
     font-weight: 700;
+  }
+  h1 > span{
+    color: red;
+    font-family: Pacifico;
+text-transform: none;
+font-size: 60px;
   }
   .menu > button {
     width:150px;
@@ -58,7 +69,6 @@ box-shadow: 0 0 165px rgba(0, 0, 0, 0.5);
 border-radius: 20px;
 border-bottom: 7px solid black;
 margin-bottom: 40px;
-padding:30px;
 overflow: hidden;
 }
 ul {
@@ -66,14 +76,28 @@ position: absolute;
 width:100%;
 height: 100%;
 display: inline-flex;
+left:0px;
 }
 li {
 list-style: none;
 width: 80%;
-padding: 25px;
+
 font-size: 25px;
 color: white;
 letter-spacing: 5px;
 text-transform: uppercase;
 text-shadow: 1px 3px 6px rgba(0,0,0,.5);
+}
+.pointer{
+  width:30px;
+  height:50px;
+  position: absolute;
+  left:50%;
+  top:90%;
+  animation: bounce 1s infinite;
+}
+@keyframes bounce {
+  0% {scale: 1;}
+  50% {scale:1.3;}
+  100% {scale:1;}
 }

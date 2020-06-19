@@ -10,11 +10,8 @@ function init() {
   camera = new THREE.PerspectiveCamera(60,window.innerWidth/window.innerHeight,1,5000);
   camera.rotation.y = 45/180*Math.PI;
   camera.position.x = 900;
-  camera.position.y = 0;
-  camera.position.z = 1000;
-
-  // controls = new THREE.OrbitControls(camera);
-  // controls.addEventListener('change', renderer);
+  camera.position.y = 100;
+  camera.position.z = 600;
 
   directionalLight = new THREE.DirectionalLight(0xffffff,100);
   directionalLight.position.set(0,1,0);
@@ -28,7 +25,10 @@ function init() {
   scene.add(light2);
 
   renderer = new THREE.WebGLRenderer({antialias:true});
-  renderer.setSize(1400,800);
+  renderer.setSize(1600,1000);
+
+  controls = new THREE.OrbitControls(camera,renderer.domElement);
+
   document.body.appendChild(renderer.domElement);
   loadScene();
   let loader = new THREE.GLTFLoader();
@@ -44,11 +44,8 @@ function init() {
     });
   });
 }
-function animate() {
-  renderer.render(scene,camera);
-  requestAnimationFrame(animate);
-}
-init();
+
+
 function loadScene() {let loader = new THREE.GLTFLoader();
   let newMaterial = new THREE.MeshStandardMaterial({color: carColor});
 
@@ -64,6 +61,10 @@ function loadScene() {let loader = new THREE.GLTFLoader();
     scene.add(gltf.scene);
     animate();
   });}
+  function animate() {
+    renderer.render(scene,camera);
+    requestAnimationFrame(animate);
+  }
 let yellowButton = document.querySelector('[menu-buttonY]');
 let greenButton = document.querySelector('[menu-buttonG]');
 let blueButton = document.querySelector('[menu-buttonB]');
@@ -79,3 +80,4 @@ blueButton.addEventListener('click',() => {
 carColor = 0x0000FF
 loadScene();
 });
+init();

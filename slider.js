@@ -2,7 +2,7 @@ let slider = document.querySelectorAll('li'),
     bingkai = document.querySelector('.slider'),
     bodyLeft = document.body.offsetWidth,
     bodyTop = document.body.offsetHeight,
-    transition = 500, 
+    transition = 300, 
     loop = 1, 
     cek, intId,
     areaSlider = document.querySelector('ul'); 
@@ -38,7 +38,7 @@ function totArea() {
         areaSlider.style.left = -slider[n].offsetLeft + 'px'
       }, (1.8 * transition));
     }
-    console.log(n)
+
   }
 }
 totArea();
